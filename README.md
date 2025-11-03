@@ -1,28 +1,31 @@
-# Лабораторная работа 1 (Проектирование логической и физической модели БД)
+```markdown
+**Лабораторные работы по БД**
 
-Перечень [лабораторных работ](https://edu.irnok.net/doku.php?
-id=db:main#%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_5_%D1%82%D1%80%D0%B8%D0%B3%D0%B3%D0%B5%D1%80%D1%8B)
+Перечень [лабораторных работ](https://edu.irnok.net/doku.php?id=db:main#%D0%BB%D0%B0%D0%B1%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F_%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0_5_%D1%82%D1%80%D0%B8%D0%B3%D0%B3%D0%B5%D1%80%D1%8B)
 
 Telegram: [at]dalannu
 
-## Постановка задачи (вариант 38)
+# Постановка задачи (вариант 38)
 
 **Фитнес-трекер и планировщик тренировок**
 
-*Сущности:* Упражнения (наименование, группа мышц, тип), тренировки (дата, продолжительность), пользователи (ID, ФИО, цель)
+*Сущности:* Упражнения (наименование, группа мышц, тип), тренировки (дата, продолжительность), пользователи (ID, ФИО, цель).
 
 *Процессы:* Пользователи выполняют тренировки, состоящие из нескольких упражнений с определенным количеством подходов и повторений.
 
 *Выходные документы:*
-- Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц, отсортированный по дате.
-- Выдать статистику по наиболее часто прорабатываемым группам мышц за указанный период, отсортированную по убыванию частоты.
 
-## Промпт к DeepSeek
+  - Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц, отсортированный по дате.
+  - Выдать статистику по наиболее часто прорабатываемым группам мышц за указанный период, отсортированную по убыванию частоты.
+
+# Лабораторная работа 1 (Проектирование логической и физической модели БД)
+
+
+## Промпт к Дипсик
 
 ```text
 Лаба по проектированию информационной модели для реляционных баз данных.
-Предполагаем PostgreSQL.
-
+Предполагаем Postgresql.
 Есть ошибки, замечания, неточности?
 
 # Фитнес-трекер и планировщик тренировок
@@ -30,127 +33,167 @@ Telegram: [at]dalannu
 ## Постановка задачи
 
 *Сущности:*
-- Упражнения (наименование, группа_мышц, тип)
-- Тренировки (дата, продолжительность)
-- Пользователи (ID, ФИО, цель)
+    Упражнения (наименование, группа_мышц, тип),
+    Тренировки (дата, продолжительность), 
+    Пользователи (ID, ФИО, цель).
 
-*Процессы:*
-Пользователи выполняют тренировки, состоящие из нескольких упражнений с определенным количеством подходов и повторений.
+*Процессы:* 
+    Пользователи выполняют тренировки, состоящие из нескольких упражнений с определенным количеством подходов и повторений.
 
 *Выходные документы:*
-- Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц
-- Статистика по наиболее часто прорабатываемым группам мышц за период
+
+  - Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц, отсортированный по дате.
+
+  - Выдать статистику по наиболее часто прорабатываемым группам мышц за указанный период, отсортированную по убыванию частоты.
 
 ## ER-Модель
-
 ### Базовые сущности
-- Пользователь(ФИО, цель)
-- Упражнение(наименование, группа_мышц, тип)  
-- Тренировка(дата, продолжительность)
+
+    Пользователь(ФИО, цель), ключ - ID
+    Упражнение(наименование, группа_мышц, тип), ключ - ID  
+    Тренировка(дата, продолжительность), ключ - ID
 
 ### Отношения
-[Пользователь]---N---выполняет---N---[Тренировка]
 
-[Тренировка]---N---содержит---N---[Упражнение]
-               | подходы, повторения, вес |
+    [Пользователь]-1,Required------------------N,Optional-[Тренировка]
+
+    [Тренировка]-N,Required-----Выполнение------M,Required-[Упражнение]
+                              подходы, повторения, вес
 
 ## Логическая модель
 
-Получаем четыре таблицы:
+Используя правила преобразования ER-диаграмм получаем четыре *таблицы*:
 
-- User(user_id, full_name, goal)
-- Exercise(exercise_id, name, muscle_group, type)  
-- Workout(workout_id, user_id, date, duration)
-- WorkoutExercise(workout_id, exercise_id, sets, reps, weight)
+  - ```User(user_id, full_name, goal)```, primary key - user_id
+  - ```Exercise(exercise_id, name, muscle_group, type)```, primary key - exercise_id
+  - ```Workout(workout_id, user_id, date, duration)```, primary key - workout_id
+  - ```WorkoutExercise(workout_id, exercise_id, sets, reps, weight)```, composite primary key - (workout_id, exercise_id)
 
 ## Физическая модель
 
-Типы данных:
+Зададим типы данных для атрибутов:
 
-- user_id: SERIAL
-- full_name: VARCHAR(100)
-- goal: TEXT
-- exercise_id: SERIAL  
-- name: VARCHAR(100)
-- muscle_group: VARCHAR(50)
-- type: VARCHAR(50)
-- workout_id: SERIAL
-- date: DATE
-- duration: INTEGER (в минутах)
-- sets: INTEGER
-- reps: INTEGER  
-- weight: DECIMAL(5,2)
+  - ```user_id::SERIAL```
+  - ```full_name::varchar(100)```
+  - ```goal::text```
+  - ```exercise_id::SERIAL```
+  - ```name::varchar(100)```
+  - ```muscle_group::varchar(50)```
+  - ```type::varchar(50)```
+  - ```workout_id::SERIAL```
+  - ```date::date```
+  - ```duration::integer``` (в минутах)
+  - ```sets::integer```
+  - ```reps::integer```
+  - ```weight::decimal(5,2)``` (вес в кг)
 
 ## Проверка нормальных форм
 
 ### Первая нормальная форма
-Соблюдена - все значения атомарные
+Все значения всех атрибутов атомарные.
 
-### Вторая нормальная форма  
-Соблюдена - нет зависимостей от части ключа
+### Вторая нормальная форма
+Выполняется: нет зависимостей неключевых атрибутов от части ключа
 
 ### Третья нормальная форма
-Соблюдена - нет транзитивных зависимостей
-Ответ DeepSeek
-Отличная работа! Модель в целом хорошо продумана, но есть несколько важных улучшений.
+Нет транзитивных зависимостей неключей от неключей
 
-Критические замечания и рекомендации
-1. Первичный ключ для WorkoutExercise
-Проблема: В текущей модели нет явного первичного ключа для таблицы WorkoutExercise. Составной ключ (workout_id, exercise_id) может не подойти, если одно упражнение выполняется несколько раз в одной тренировке.
+### Нормальная форма Бойса-Кодда
+Соблюдена.
+```
 
-Исправление:
+Отличная работа! Модель хорошо продумана и логична, но есть несколько важных замечаний и улучшений, которые стоит внести для создания более качественной базы данных.
 
-sql
+### Критические замечания и рекомендации
+
+#### 1. Первичный ключ для `WorkoutExercise`
+**Проблема:** Использование составного первичного ключа `(workout_id, exercise_id)` может быть ограничивающим.
+*   **Ограничения:** Не позволяет добавить одно и то же упражнение несколько раз в одну тренировку (например, с разными подходами/весами).
+*   **Гибкость:** Суррогатный ключ дает больше гибкости для будущих изменений.
+
+**Исправление:**
+```sql
+-- Было: WorkoutExercise(workout_id, exercise_id, sets, reps, weight)
+-- Стало:
 WorkoutExercise(
     workout_exercise_id SERIAL PRIMARY KEY,
     workout_id INTEGER NOT NULL REFERENCES Workout(workout_id),
-    exercise_id INTEGER NOT NULL REFERENCES Exercise(exercise_id), 
+    exercise_id INTEGER NOT NULL REFERENCES Exercise(exercise_id),
     sets INTEGER NOT NULL,
     reps INTEGER NOT NULL,
     weight DECIMAL(5,2)
 );
-2. Отслеживание прогресса весов
-Проблема: Для выдачи прогресса по рабочему весу нужно хранить историю выполнения каждого упражнения с датами.
+```
 
-Решение: Текущая структура WorkoutExercise уже решает эту проблему, так как связана с тренировкой, у которой есть дата.
+#### 2. Добавление ограничений целостности
+**Проблема:** Отсутствуют проверки на корректность данных.
+*   **Отрицательные значения:** Количество подходов, повторений и вес не могут быть отрицательными.
+*   **Обязательные поля:** Некоторые поля должны быть обязательными для заполнения.
 
-3. Типы данных
-duration - лучше использовать INTERVAL или хранить в секундах (INTEGER)
+**Исправление:**
+```sql
+-- Добавляем CHECK constraints
+CREATE TABLE WorkoutExercise (
+    workout_exercise_id SERIAL PRIMARY KEY,
+    workout_id INTEGER NOT NULL REFERENCES Workout(workout_id) ON DELETE CASCADE,
+    exercise_id INTEGER NOT NULL REFERENCES Exercise(exercise_id),
+    sets INTEGER NOT NULL CHECK (sets > 0),
+    reps INTEGER NOT NULL CHECK (reps > 0),
+    weight DECIMAL(5,2) CHECK (weight >= 0),
+    UNIQUE(workout_id, exercise_id) -- Обеспечиваем уникальность комбинации
+);
+```
 
-date - в Workout лучше использовать TIMESTAMP для точного времени тренировки
+#### 3. Улучшение структуры данных
+**Проблема:** Некоторые типы данных можно улучшить для большей гибкости.
+*   **Продолжительность:** Хранить продолжительность в минутах - хорошо, но можно добавить возможность хранить в интервале.
+*   **Дата и время:** Для тренировок важно и время, а не только дата.
 
-weight - DECIMAL(5,2) подходит для большинства упражнений
+**Исправление:**
+```sql
+-- Улучшенная таблица Workout
+CREATE TABLE Workout (
+    workout_id SERIAL PRIMARY KEY,
+    user_id INTEGER NOT NULL REFERENCES Users(user_id) ON DELETE CASCADE,
+    workout_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    duration INTERVAL, -- Более гибкий тип для продолжительности
+    notes TEXT -- Дополнительные заметки о тренировке
+);
+```
 
-Исправленная и улучшенная модель
-Логическая модель
-User (user_id, full_name, goal)
+---
 
-Exercise (exercise_id, name, muscle_group, type)
+### Исправленная и улучшенная модель
 
-Workout (workout_id, user_id, workout_date, duration)
+#### Логическая модель
+*   **`Users`** (`user_id`, full_name, goal)
+*   **`Exercise`** (`exercise_id`, name, muscle_group, type)
+*   **`Workout`** (`workout_id`, `user_id`, workout_date, duration, notes)
+*   **`WorkoutExercise`** (`workout_exercise_id`, `workout_id`, `exercise_id`, sets, reps, weight)
 
-WorkoutExercise (workout_exercise_id, workout_id, exercise_id, sets, reps, weight)
-
-Физическая модель (DDL для PostgreSQL)
-sql
+#### Физическая модель (DDL для PostgreSQL)
+```sql
 CREATE TABLE Users (
     user_id SERIAL PRIMARY KEY,
     full_name VARCHAR(100) NOT NULL,
-    goal TEXT
+    goal TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE Exercise (
     exercise_id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     muscle_group VARCHAR(50) NOT NULL,
-    type VARCHAR(50)
+    type VARCHAR(50) NOT NULL,
+    description TEXT
 );
 
 CREATE TABLE Workout (
     workout_id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL REFERENCES Users(user_id) ON DELETE CASCADE,
-    workout_date TIMESTAMP NOT NULL,
-    duration_minutes INTEGER
+    workout_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    duration INTERVAL,
+    notes TEXT
 );
 
 CREATE TABLE WorkoutExercise (
@@ -159,18 +202,28 @@ CREATE TABLE WorkoutExercise (
     exercise_id INTEGER NOT NULL REFERENCES Exercise(exercise_id),
     sets INTEGER NOT NULL CHECK (sets > 0),
     reps INTEGER NOT NULL CHECK (reps > 0),
-    weight DECIMAL(5,2) CHECK (weight >= 0)
+    weight DECIMAL(5,2) CHECK (weight >= 0),
+    UNIQUE(workout_id, exercise_id)
 );
 
--- Индексы для ускорения запросов
-CREATE INDEX idx_workout_date ON Workout(workout_date);
-CREATE INDEX idx_workout_user ON Workout(user_id);
-CREATE INDEX idx_workoutexercise_workout ON WorkoutExercise(workout_id);
-CREATE INDEX idx_exercise_muscle ON Exercise(muscle_group);
-Примеры запросов для "Выходных документов"
-1. Прогресс по рабочему весу для пользователя в упражнении за последний месяц:
+-- Индексы для ускорения часто используемых запросов
+CREATE INDEX idx_workout_user_date ON Workout(user_id, workout_date);
+CREATE INDEX idx_workout_exercise_workout ON WorkoutExercise(workout_id);
+CREATE INDEX idx_workout_exercise_exercise ON WorkoutExercise(exercise_id);
+CREATE INDEX idx_exercise_muscle_group ON Exercise(muscle_group);
+```
 
-sql
+#### Проверка нормальных форм (для исправленной модели)
+*   **1NF:** Соблюдена.
+*   **2NF:** Соблюдена, так как все неключевые атрибуты полностью зависят от целого первичного ключа.
+*   **3NF/BCNF:** Соблюдена. Нет транзитивных зависимостей.
+
+---
+
+### Примеры запросов для "Выходных документов"
+
+**1. Прогресс по рабочему весу для заданного пользователя и упражнения за последний месяц:**
+```sql
 SELECT 
     w.workout_date,
     we.weight,
@@ -179,109 +232,133 @@ SELECT
 FROM WorkoutExercise we
 JOIN Workout w ON we.workout_id = w.workout_id
 JOIN Exercise e ON we.exercise_id = e.exercise_id
-WHERE w.user_id = 1  -- ID пользователя
-  AND e.exercise_id = 5  -- ID упражнения
-  AND w.workout_date >= CURRENT_DATE - INTERVAL '1 month'
+WHERE w.user_id = 1  -- ID заданного пользователя
+    AND e.exercise_id = 5  -- ID заданного упражнения
+    AND w.workout_date >= CURRENT_DATE - INTERVAL '1 month'
 ORDER BY w.workout_date;
-2. Статистика по группам мышц за период:
+```
 
-sql
+**2. Статистика по наиболее часто прорабатываемым группам мышц за указанный период:**
+```sql
 SELECT 
     e.muscle_group,
-    COUNT(we.workout_exercise_id) as workout_count,
+    COUNT(*) as workout_count,
     COUNT(DISTINCT w.workout_id) as unique_workouts
 FROM WorkoutExercise we
-JOIN Workout w ON we.workout_id = w.workout_id  
+JOIN Workout w ON we.workout_id = w.workout_id
 JOIN Exercise e ON we.exercise_id = e.exercise_id
-WHERE w.workout_date BETWEEN '2024-01-01' AND '2024-01-31'
+WHERE w.workout_date BETWEEN '2024-01-01' AND '2024-01-31'  -- Заданный период
 GROUP BY e.muscle_group
 ORDER BY workout_count DESC;
-Промпт 2
-text
-В текущей модели для статистики по группам мышц нужно делать сложные JOIN через несколько таблиц.
-Не проще ли добавить мышечную группу прямо в WorkoutExercise для денормализации и ускорения запросов?
-Отличное предложение! Это разумный компромисс между нормализацией и производительностью.
+```
 
-Упрощенная модель с денормализацией
-sql
+**Итог:** После внесения этих правок ваша модель станет более гибкой, надежной и соответствующей стандартам реляционного проектирования. Удачи в сдаче лабы!
+
+## Промпт 2
+
+```text
+В таблице WorkoutExercise добавлен суррогатный ключ, но при этом сохраняется уникальность комбинации (workout_id, exercise_id).
+Не приведет ли это к избыточности? Может ли одна тренировка содержать одно и то же упражнение несколько раз с разными параметрами?
+```
+
+**Отличный вопрос! Вы правы, это важный нюанс проектирования.**
+
+### Анализ требования
+
+Давайте рассмотрим два сценария:
+
+#### Сценарий 1: Одно упражнение один раз за тренировку
+- **Текущий подход:** `UNIQUE(workout_id, exercise_id)` предотвращает дублирование
+- **Плюсы:** Простая структура, гарантия уникальности
+- **Минусы:** Нельзя добавить суперсеты или повторы одного упражнения
+
+#### Сценарий 2: Одно упражнение несколько раз за тренировку
+- **Пример:** Жим лежа 3 подхода, потом после других упражнений еще 2 подхода
+- **Требуется:** Убрать `UNIQUE` ограничение, добавить `exercise_order` или `set_number`
+
+### Рекомендация
+
+Для **фитнес-трекера** более гибким будет **Сценарий 2**, так как:
+1. **Суперсеты** - распространенная практика
+2. **Разделение на части** - иногда упражнение выполняется в начале и конце тренировки
+3. **Гибкость** - не ограничивает пользователя
+
+### Улучшенная модель:
+
+```sql
 CREATE TABLE WorkoutExercise (
     workout_exercise_id SERIAL PRIMARY KEY,
     workout_id INTEGER NOT NULL REFERENCES Workout(workout_id) ON DELETE CASCADE,
     exercise_id INTEGER NOT NULL REFERENCES Exercise(exercise_id),
-    muscle_group VARCHAR(50) NOT NULL, -- Денормализованное поле
+    exercise_order INTEGER, -- Порядок выполнения в тренировке
     sets INTEGER NOT NULL CHECK (sets > 0),
-    reps INTEGER NOT NULL CHECK (reps > 0), 
+    reps INTEGER NOT NULL CHECK (reps > 0),
     weight DECIMAL(5,2) CHECK (weight >= 0)
+    -- Убрано UNIQUE(workout_id, exercise_id)
 );
-Преимущества денормализации:
-Быстрее запросы - не нужны JOIN для статистики по группам мышц
 
-Проще агрегации - прямое группирование по muscle_group
+-- Добавляем индекс для порядка выполнения
+CREATE INDEX idx_workout_exercise_order ON WorkoutExercise(workout_id, exercise_order);
+```
 
-Историческая сохранность - если изменится группа мышц упражнения, старая статистика останется корректной
+### Когда сохранить уникальность?
 
-Упрощенный запрос для статистики:
-sql
-SELECT 
-    muscle_group,
-    COUNT(*) as exercise_count
-FROM WorkoutExercise we
-JOIN Workout w ON we.workout_id = w.workout_id
-WHERE w.workout_date BETWEEN '2024-01-01' AND '2024-01-31'
-GROUP BY muscle_group
-ORDER BY exercise_count DESC;
-Недостатки:
-Избыточность данных - muscle_group хранится в двух местах
+Только если бизнес-требования явно запрещают повторение упражнений в одной тренировке.
 
-Возможная несогласованность - нужно следить за обновлением
+**Вывод:** Для фитнес-трекера лучше убрать ограничение уникальности и добавить поле для порядка выполнения. Это дает больше гибкости пользователям.
 
-Вывод: Для аналитических запросов по статистике денормализация оправдана.
+## Полученные диаграммы:
+### ER-диаграмма
 
-Полученные диаграммы:
-ER-диаграмма
-
+```mermaid
 erDiagram
     USERS ||--o{ WORKOUT : performs
     WORKOUT ||--o{ WORKOUT_EXERCISE : contains
-    EXERCISE ||--o{ WORKOUT_EXERCISE : used_in
+    EXERCISE ||--o{ WORKOUT_EXERCISE : included_in
     
     USERS {
         integer user_id PK "SERIAL"
         varchar full_name
         text goal
+        timestamp created_at
     }
     
     EXERCISE {
-        integer exercise_id PK "SERIAL" 
+        integer exercise_id PK "SERIAL"
         varchar name
         varchar muscle_group
         varchar type
+        text description
     }
     
     WORKOUT {
         integer workout_id PK "SERIAL"
         integer user_id FK
         timestamp workout_date
-        integer duration_minutes
+        interval duration
+        text notes
     }
     
     WORKOUT_EXERCISE {
         integer workout_exercise_id PK "SERIAL"
         integer workout_id FK
         integer exercise_id FK
-        varchar muscle_group
+        integer exercise_order
         integer sets
         integer reps
         decimal weight
     }
+```
 
-Логическая модель в виде Диаграммы классов UML
+## Логическая модель в виде Диаграммы классов UML-2.4
 
+```mermaid
 classDiagram
     class Users {
         +user_id: Integer (PK)
         +full_name: String
         +goal: String
+        +created_at: DateTime
         +getWorkouts() List~Workout~
     }
     
@@ -290,6 +367,7 @@ classDiagram
         +name: String
         +muscle_group: String
         +type: String
+        +description: String
         +getWorkoutExercises() List~WorkoutExercise~
     }
     
@@ -297,7 +375,8 @@ classDiagram
         +workout_id: Integer (PK)
         +user_id: Integer (FK)
         +workout_date: DateTime
-        +duration_minutes: Integer
+        +duration: Interval
+        +notes: String
         +getUser() Users
         +getExercises() List~WorkoutExercise~
     }
@@ -306,7 +385,7 @@ classDiagram
         +workout_exercise_id: Integer (PK)
         +workout_id: Integer (FK)
         +exercise_id: Integer (FK)
-        +muscle_group: String
+        +exercise_order: Integer
         +sets: Integer
         +reps: Integer
         +weight: Decimal
@@ -316,58 +395,60 @@ classDiagram
     
     Users "1" -- "*" Workout : performs
     Workout "1" -- "*" WorkoutExercise : contains
-    Exercise "1" -- "*" WorkoutExercise : used_in
+    Exercise "1" -- "*" WorkoutExercise : included_in
+```
 
-Физическая модель БД
+## Физическая модель БД
 
+```mermaid
 erDiagram
     users {
         integer user_id PK "SERIAL"
         varchar full_name "NOT NULL"
         text goal
+        timestamp created_at "DEFAULT CURRENT_TIMESTAMP"
     }
     
     exercise {
         integer exercise_id PK "SERIAL"
         varchar name "NOT NULL"
         varchar muscle_group "NOT NULL"
-        varchar type
+        varchar type "NOT NULL"
+        text description
     }
     
     workout {
         integer workout_id PK "SERIAL"
         integer user_id FK "NOT NULL"
         timestamp workout_date "NOT NULL"
-        integer duration_minutes
+        interval duration
+        text notes
     }
     
     workout_exercise {
         integer workout_exercise_id PK "SERIAL"
         integer workout_id FK "NOT NULL"
         integer exercise_id FK "NOT NULL"
-        varchar muscle_group "NOT NULL"
-        integer sets "NOT NULL"
-        integer reps "NOT NULL"
-        decimal weight
+        integer exercise_order
+        integer sets "NOT NULL, CHECK (sets > 0)"
+        integer reps "NOT NULL, CHECK (reps > 0)"
+        decimal weight "CHECK (weight >= 0)"
     }
     
     users ||--o{ workout : "FOREIGN KEY (user_id) REFERENCES users(user_id)"
     workout ||--o{ workout_exercise : "FOREIGN KEY (workout_id) REFERENCES workout(workout_id)"
     exercise ||--o{ workout_exercise : "FOREIGN KEY (exercise_id) REFERENCES exercise(exercise_id)"
-    
-Заключение
-В первой лабораторной работе при помощи теоретического инструментария проектирования БД и языковой модели DeepSeek произведено проектирование ER-, логической и физической модели базы данных варианта 38. Основные решения и улучшения:
+```
 
-Реализовано две итерации консультации с ИИ-ассистентом
+## Заключение
 
-Введен суррогатный ключ для связи многие-ко-многим (WorkoutExercise)
+В первой лабораторной работе при помощи теоретического инструментария проектирования БД и большой языковой модели "Дипсик" произведено проектирование ER-, логической и физической модели базы данных варианта 38. Основные замечания, решенные в ходе выполнения лабораторной работы:
 
-Применена денормализация для ускорения аналитических запросов (muscle_group в WorkoutExercise)
+  1. Реализовано две итерации консультации с БЯМ;
+  2. БЯМ исправила существенные ошибки проектирования (суррогатные ключи, ограничения целостности);
+  3. Добавлены CHECK-ограничения для валидации данных;
+  4. Улучшена гибкость модели (возможность повторения упражнений в одной тренировке);
+  5. Оптимизированы типы данных (INTERVAL для продолжительности, TIMESTAMP для даты тренировки).
 
-Добавлены проверочные ограничения (CHECK) для целостности данных
-
-Созданы индексы для оптимизации частых запросов
-
-Учтена временная составляющая для анализа прогресса
-
-Модель удовлетворяет требованиям нормальных форм и эффективно решает поставленные задачи по трекингу прогресса и статистике тренировок.
+Ссылка на чат: https://chat.deepseek.com/a/chat/s/c8158baf-f8cf-43d5-8a2b-9d2b41cd6178
+```
