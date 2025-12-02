@@ -451,4 +451,64 @@ erDiagram
   5. Оптимизированы типы данных (INTERVAL для продолжительности, TIMESTAMP для даты тренировки).
 
 Ссылка на чат: https://chat.deepseek.com/a/chat/s/c8158baf-f8cf-43d5-8a2b-9d2b41cd6178
+
+
+### Лабораторная работа 2.
+
+## 1. Логическая модель данных
+# Сущности и связи:
+users — пользователи
+exercises — упражнения
+workouts — тренировки
+workout_exercises — связующая таблица (упражнения в тренировке с подходами, повторениями, весом)
+
+users (id, name, goal)
+workouts (id, user_id, date, duration_minutes)
+exercises (id, name, muscle_group, type)
+workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
+
+## 2. Coздание таблиц
+# users:
+<img width="399" height="233" alt="image" src="https://github.com/user-attachments/assets/9112741b-6430-46c3-b767-e1beba3ebeca" />
+
+# exercises:
+<img width="532" height="224" alt="image" src="https://github.com/user-attachments/assets/5943d921-f400-41c0-b3d0-7757f8851ec9" />
+
+# workouts
+<img width="647" height="227" alt="image" src="https://github.com/user-attachments/assets/5b4d0a86-1e1f-4809-82bf-e8b50645eb33" />
+
+# workout_exercises:
+<img width="718" height="304" alt="image" src="https://github.com/user-attachments/assets/91e51241-fb2b-4b3b-a8e3-0f242c61b121" />
+
+## 3. Наполнение таблиц
+# users:
+<img width="495" height="315" alt="image" src="https://github.com/user-attachments/assets/48afa6ca-b1c3-4a14-bf88-2b10eebbd5e7" />
+
+# exercises:
+<img width="627" height="312" alt="image" src="https://github.com/user-attachments/assets/be811473-9e89-4506-93e0-cb85a634d4c0" />
+
+# workouts
+<img width="694" height="312" alt="image" src="https://github.com/user-attachments/assets/037d104b-e830-4895-8e5f-42e99b8f8f5d" />
+
+# workout_exercises:
+<img width="883" height="366" alt="image" src="https://github.com/user-attachments/assets/05a722df-448a-436c-9d51-8e3116a05143" />
+
+## 4. Содержательные SELECT-запросы с JOIN
+# Запрос 1: Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц, отсортированный по дате.
+<img width="699" height="480" alt="image" src="https://github.com/user-attachments/assets/41a37912-205e-451d-b595-1b2e2ce9eac7" />
+
+# Запрос 2: Выдать статистику по наиболее часто прорабатываемым группам мышц за указанный период, отсортированную по убыванию частоты
+<img width="536" height="473" alt="image" src="https://github.com/user-attachments/assets/0b27e4df-a673-43f2-ba8d-49ea115a557a" />
+
+
+## 5. Проверка нормальных форм
+# 5.1 Проверка соответствия 4НФ (Fourth Normal Form)
+Таблица workout_exercises не содержит многозначных зависимостей. Все атрибуты функционально зависят от составного ключа (workout_id, exercise_id).
+
+# 5.2 Проверка соответствия 5НФ (Fifth Normal Form)
+Все связи декомпозированы без потерь информации:
+Отношение M:M между workouts и exercises вынесено в отдельную таблицу workout_exercises
+Нет избыточных соединений при восстановлении исходных данных
+
+✅ Вывод: База данных соответствует 4-й и 5-й нормальным формам.
 ```
