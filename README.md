@@ -483,15 +483,20 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 ## 3. Наполнение таблиц
 # users:
 <img width="495" height="315" alt="image" src="https://github.com/user-attachments/assets/48afa6ca-b1c3-4a14-bf88-2b10eebbd5e7" />
+<img width="498" height="291" alt="image" src="https://github.com/user-attachments/assets/08698a62-525c-4235-b244-b71bc51d97ef" />
 
 # exercises:
 <img width="627" height="312" alt="image" src="https://github.com/user-attachments/assets/be811473-9e89-4506-93e0-cb85a634d4c0" />
+<img width="693" height="326" alt="image" src="https://github.com/user-attachments/assets/3eea0e74-8a39-49f9-af6d-98c75fe19d4f" />
 
 # workouts
 <img width="694" height="312" alt="image" src="https://github.com/user-attachments/assets/037d104b-e830-4895-8e5f-42e99b8f8f5d" />
+<img width="521" height="315" alt="image" src="https://github.com/user-attachments/assets/1e02e3fa-898e-4750-8b38-9029e9994ff5" />
 
 # workout_exercises:
 <img width="883" height="366" alt="image" src="https://github.com/user-attachments/assets/05a722df-448a-436c-9d51-8e3116a05143" />
+<img width="756" height="410" alt="image" src="https://github.com/user-attachments/assets/0effd1b5-d167-470b-be52-b30593d7124d" />
+
 
 ## 4. Содержательные SELECT-запросы с JOIN
 # Запрос 1: Для заданного пользователя выдать прогресс по рабочему весу в определенном упражнении за последний месяц, отсортированный по дате.
@@ -499,7 +504,6 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 
 # Запрос 2: Выдать статистику по наиболее часто прорабатываемым группам мышц за указанный период, отсортированную по убыванию частоты
 <img width="536" height="473" alt="image" src="https://github.com/user-attachments/assets/0b27e4df-a673-43f2-ba8d-49ea115a557a" />
-
 
 ## 5. Проверка нормальных форм
 # 5.1 Проверка соответствия 4НФ (Fourth Normal Form)
