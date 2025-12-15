@@ -515,4 +515,42 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 Нет избыточных соединений при восстановлении исходных данных
 
 ✅ Вывод: База данных соответствует 4-й и 5-й нормальным формам.
+
+### Лабораторная работа 3.
+
+# Представление для отслеживания прогресса пользователей по упражнениям 
+<img width="974" height="299" alt="image" src="https://github.com/user-attachments/assets/d186edb6-a755-4706-9d9d-d51b179db622" />
+<img width="974" height="349" alt="image" src="https://github.com/user-attachments/assets/4e8f765f-00c5-4b9a-ae25-d351201d6e8f" />
+
+# Статистика по частоте проработки групп мышц
+<img width="974" height="340" alt="image" src="https://github.com/user-attachments/assets/3f402939-c90f-4e5e-ba0a-70387016b266" />
+<img width="974" height="295" alt="image" src="https://github.com/user-attachments/assets/fc765cfc-6ed1-4abc-a26c-dba6354197b5" />
+
+# Детализированная информация о тренировках
+<img width="974" height="299" alt="image" src="https://github.com/user-attachments/assets/e3c8296a-c3e0-4639-9541-3755d9f2a99d" />
+<img width="974" height="217" alt="image" src="https://github.com/user-attachments/assets/473a7544-87a0-4033-8b9d-3d8621c3b50b" />
+
+# Ежемесячный прогресс пользователей
+<img width="974" height="421" alt="image" src="https://github.com/user-attachments/assets/14df7511-ca86-476d-adf9-7b1ef35e1b56" />
+<img width="974" height="223" alt="image" src="https://github.com/user-attachments/assets/32574bb7-aa1a-4c19-8507-36e783d5735f" />
+
+# Получение прогресса пользователя по конкретному упражнению за последний месяц
+<img width="974" height="633" alt="image" src="https://github.com/user-attachments/assets/a933c96f-427b-44bc-9099-9d59954f9377" />
+
+# Статистика по группам мышц за указанный период
+<img width="974" height="895" alt="image" src="https://github.com/user-attachments/assets/1071c309-52a6-4f0c-8585-9ed860599a4d" />
+
+# Добавление новой тренировки с упражнениями 
+<img width="974" height="997" alt="image" src="https://github.com/user-attachments/assets/99dc5b1e-be79-447c-9b0e-7b97f2a84854" />
+
+# Получение персональных рекомендаций для пользователя
+<img width="974" height="985" alt="image" src="https://github.com/user-attachments/assets/3fb59e75-ba65-460e-9fd4-a2f4e4e7be91" />
+
+# Расчет общего обьема нагрузки для тренировки
+<img width="974" height="311" alt="image" src="https://github.com/user-attachments/assets/f5276a7a-47ac-49f1-8ca1-82840f8f75a9" />
+
+# Получение лучшего результата пользователя по упражнению
+<img width="974" height="493" alt="image" src="https://github.com/user-attachments/assets/c30e124f-ae66-44a5-a448-ff181dc0640f" />
+
+
 ```
