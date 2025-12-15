@@ -516,7 +516,7 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 
 ✅ Вывод: База данных соответствует 4-й и 5-й нормальным формам.
 
-### Лабораторная работа 3.
+# Лабораторная работа 3.
 
 # Представление для отслеживания прогресса пользователей по упражнениям 
 <img width="974" height="299" alt="image" src="https://github.com/user-attachments/assets/d186edb6-a755-4706-9d9d-d51b179db622" />
