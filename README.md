@@ -552,5 +552,83 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 # Получение лучшего результата пользователя по упражнению
 <img width="974" height="493" alt="image" src="https://github.com/user-attachments/assets/c30e124f-ae66-44a5-a448-ff181dc0640f" />
 
+### Лабораторная работа 4
+
+## Анализ производительности
+## Созданы генераторы данных, заполняющие таблицы 20000 записями
+
+# 1.1 Генератор для таблицы users
+<img width="974" height="525" alt="image" src="https://github.com/user-attachments/assets/5d97df37-913c-426a-8bfe-4ad66b58514b" />
+
+# 1.2 Генератор для таблицы lubsanova.exercises (100 записей)
+<img width="883" height="1242" alt="image" src="https://github.com/user-attachments/assets/d23f7cdd-0c80-43c9-8f0a-91179e515a8d" />
+<img width="306" height="238" alt="image" src="https://github.com/user-attachments/assets/2f22993c-9078-4c3f-99c1-f0ac61fc02b6" />
+
+# 1.3 Генератор для таблицы lubsanova.workouts (50000 записей)
+<img width="974" height="1232" alt="image" src="https://github.com/user-attachments/assets/f5848a9f-a774-4d69-abe1-ede1873811fe" />
+
+# 1.4 Генератор для таблицы lubsanova.workout_exercises (200000 записей)
+<img width="974" height="996" alt="image" src="https://github.com/user-attachments/assets/354d233b-8694-4ac2-9c86-f7eea31dea11" />
+<img width="256" height="97" alt="image" src="https://github.com/user-attachments/assets/b6c40d65-37e6-467e-be80-778a15af8c18" />
+
+## Анализ планов выполнения запросов
+
+# 2.1. Создание индексов для оптимизации
+<img width="738" height="705" alt="image" src="https://github.com/user-attachments/assets/f4bd8af2-2c81-465c-bb84-404530e82a5a" />
+
+# 2.2 Запрос 1: Прогресс пользователя по упражнению (анализ)
+<img width="974" height="686" alt="image" src="https://github.com/user-attachments/assets/ebab6469-2a33-4498-a92b-9c9abbdd557e" />
+
+# 2.3. Запрос 2: Статистика по группам мышц (анализ)
+<img width="944" height="1189" alt="image" src="https://github.com/user-attachments/assets/fe9cd2b5-5e51-423d-b2c9-f99d33bcdbac" />
+
+## Обновление статистики
+
+<img width="974" height="680" alt="image" src="https://github.com/user-attachments/assets/4a76f583-2b63-46fd-b3e4-07339967a9e4" />
+
+
+### Лабораторная работа 5
+
+## Реализация бизнес-логики на уровне БД и системы аудита
+## 1. Триггеры каскадного удаления
+
+# 1.1. Триггерная функция для удаления тренировок пользователя
+<img width="953" height="570" alt="image" src="https://github.com/user-attachments/assets/67656c43-2af9-45f7-8253-7b6d5add2588" />
+
+# 1.2 Триггер для удаления упражнений из тренировок
+<img width="974" height="548" alt="image" src="https://github.com/user-attachments/assets/cc3affc4-1721-4d97-9845-4617f5ca6d8f" />
+
+## 2. Система аудита изменений
+
+# 2.1. Создание таблицы-журнала для аудита
+<img width="824" height="694" alt="image" src="https://github.com/user-attachments/assets/cf1b354a-c054-4c79-b149-f8f2746fc613" />
+
+# 2.2. Триггер для аудита INSERT операций
+<img width="974" height="922" alt="image" src="https://github.com/user-attachments/assets/58ba115a-4e77-4b1d-bc6b-1f211e067004" />
+
+# 2.3. Триггер для аудита UPDATE операций
+<img width="974" height="988" alt="image" src="https://github.com/user-attachments/assets/816baa65-81a2-42a2-bfae-6863822c8358" />
+
+# 2.4. Триггер для аудита DELETE операций
+<img width="974" height="949" alt="image" src="https://github.com/user-attachments/assets/3d88813f-2b01-4f5b-897c-3502866d3bc7" />
+
+## 3. Бизнес-правила и ограничения
+
+# 3.1. Проверка реалистичности веса
+<img width="974" height="603" alt="image" src="https://github.com/user-attachments/assets/8bdf137d-e81b-464e-9a9f-4b531a9d90e5" />
+
+# 3.2. Проверка прогресса (вес не может уменьшаться без причины)
+<img width="974" height="887" alt="image" src="https://github.com/user-attachments/assets/ad87275a-6298-4e6d-b434-b5e21c628e08" />
+
+## 4. Дополнительные функции для бизнес-логики
+
+# 4.1. Функция расчета тренировочного объема
+<img width="970" height="870" alt="image" src="https://github.com/user-attachments/assets/f987b3d6-4b0b-474d-8b01-e83e7c6c4871" />
+
+# 4.2. Функция для получения рекомендаций
+<img width="974" height="1100" alt="image" src="https://github.com/user-attachments/assets/c40a9a78-f1d5-4616-92c8-6cf6c69dc30a" />
+
+## 5. Тестирование работы триггеров и функций
+<img width="844" height="663" alt="image" src="https://github.com/user-attachments/assets/6c7c4d60-2b7a-490f-991c-9aa99c090f55" />
 
 ```
