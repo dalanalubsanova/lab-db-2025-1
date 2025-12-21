@@ -573,18 +573,26 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 
 ## Анализ планов выполнения запросов
 
-# 2.1. Создание индексов для оптимизации
+# 2. Анализ производительности ДО оптимизации
+# 2.1. Запрос 1: Прогресс пользователя по упражнению за месяц
+![Uploading image.png…]()
+
+# 2.2. Запрос 2: Статистика по группам мышц за период
+![Uploading image.png…]()
+
+# 2.3. Создание индексов для оптимизации
 <img width="738" height="705" alt="image" src="https://github.com/user-attachments/assets/f4bd8af2-2c81-465c-bb84-404530e82a5a" />
 
-# 2.2 Запрос 1: Прогресс пользователя по упражнению (анализ)
-<img width="974" height="686" alt="image" src="https://github.com/user-attachments/assets/ebab6469-2a33-4498-a92b-9c9abbdd557e" />
-
-# 2.3. Запрос 2: Статистика по группам мышц (анализ)
-<img width="944" height="1189" alt="image" src="https://github.com/user-attachments/assets/fe9cd2b5-5e51-423d-b2c9-f99d33bcdbac" />
-
 ## Обновление статистики
-
 <img width="974" height="680" alt="image" src="https://github.com/user-attachments/assets/4a76f583-2b63-46fd-b3e4-07339967a9e4" />
+
+# 3. Анализ производительности ПОСЛЕ оптимизации
+# 3.1. Запрос 1: Прогресс пользователя по упражнению за месяц (после индексов)
+![Uploading image.png…]()
+
+# 3.2. Запрос 2: Статистика по группам мышц за период (после индексов)
+![Uploading image.png…]()
+![Uploading image.png…]()
 
 
 ### Лабораторная работа 5
