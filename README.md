@@ -575,10 +575,13 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 
 # 2. Анализ производительности ДО оптимизации
 # 2.1. Запрос 1: Прогресс пользователя по упражнению за месяц
-![Uploading image.png…]()
+<img width="833" height="683" alt="image" src="https://github.com/user-attachments/assets/a1c28c47-baeb-4171-885e-d2d73d2c87ef" />
+
 
 # 2.2. Запрос 2: Статистика по группам мышц за период
-![Uploading image.png…]()
+<img width="583" height="749" alt="image" src="https://github.com/user-attachments/assets/d8cbd0fc-2189-4a40-aa5b-edf69ab9e3ec" />
+
+<img width="381" height="204" alt="image" src="https://github.com/user-attachments/assets/1edecc4f-9b0b-4694-838c-7896724c0bcf" />
 
 # 2.3. Создание индексов для оптимизации
 <img width="738" height="705" alt="image" src="https://github.com/user-attachments/assets/f4bd8af2-2c81-465c-bb84-404530e82a5a" />
@@ -588,11 +591,13 @@ workout_exercises (id, workout_id, exercise_id, sets, reps, weight_kg)
 
 # 3. Анализ производительности ПОСЛЕ оптимизации
 # 3.1. Запрос 1: Прогресс пользователя по упражнению за месяц (после индексов)
-![Uploading image.png…]()
+<img width="639" height="525" alt="image" src="https://github.com/user-attachments/assets/4994135d-7ab8-4128-9ec6-25bbf57faaa1" />
+
 
 # 3.2. Запрос 2: Статистика по группам мышц за период (после индексов)
-![Uploading image.png…]()
-![Uploading image.png…]()
+<img width="378" height="212" alt="image" src="https://github.com/user-attachments/assets/b255289b-6f9d-4a35-abb6-de5477eb086e" />
+<img width="590" height="747" alt="image" src="https://github.com/user-attachments/assets/d2e066b0-a943-452a-9004-2631485cbe50" />
+
 
 
 ### Лабораторная работа 5
